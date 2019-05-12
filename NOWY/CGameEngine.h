@@ -1,7 +1,9 @@
 #pragma once
-#include "CGameState.h"
 #include <memory>
 #include <stack>
+#include "SFML/Graphics.hpp"
+
+class CGameState;
 
 class CGameEngine
 {
@@ -9,7 +11,8 @@ private:
 	std::stack<CGameState*> gameStates;
 	bool isRuning;
 public:
-	CGameEngine(CGameState*);
+	sf::RenderWindow window;
+	CGameEngine();
 	~CGameEngine();
 	void addState(CGameState*);
 	CGameState* getState();

@@ -4,8 +4,8 @@
 #include <iostream>
 
 int main() {
-	CGameMenu menu;
-	CGameEngine engine(&menu);
+	CGameEngine engine;
+	engine.addState(new CGameMenu(&engine));
 	engine.GameLoop();
 	return 0;
 }

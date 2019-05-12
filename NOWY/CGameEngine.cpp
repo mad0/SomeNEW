@@ -1,11 +1,11 @@
 #include "CGameEngine.h"
 #include <iostream>
+#include "CGameState.h"
 
-
-CGameEngine::CGameEngine(CGameState *_state)
+CGameEngine::CGameEngine()
 {
 	isRuning = true;
-	gameStates.push(_state);
+	window.create(sf::VideoMode(1280, 720), "GameEngine v.001");
 }
 
 CGameEngine::~CGameEngine()
@@ -36,10 +36,15 @@ void CGameEngine::delState()
 
 void CGameEngine::GameLoop()
 {
+	std::cout << "LOOP\n";
 	while (isRuning) {
-		getState()->input();
-		getState()->update();
-		getState()->draw();
+		while (window.isOpen()) {
+			getState()->input();
+			getState()->update();
+			window.clear();
+			getState()->draw();
+			window.display();
+		}
 	}
 }
 
