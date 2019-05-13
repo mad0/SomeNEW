@@ -10,6 +10,8 @@ CGameEngine::CGameEngine()
 
 CGameEngine::~CGameEngine(){
 	std::cout << "NISZCZE ENGINE\n";
+	//usuwa ostatni wskaznik ze stosu
+	//std::cout << &(*getState()) << "\n";
 }
 
 void CGameEngine::addState(CGameState *_state){

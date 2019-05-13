@@ -2,7 +2,6 @@
 #include <iostream>
 
 CPlayState::CPlayState(CGameEngine *_engine){
-	
 	this->engine = _engine;
 	showLog(typeid(dynamic_cast<CPlayState*>(engine->getState())).name());
 }
