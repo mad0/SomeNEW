@@ -1,11 +1,14 @@
 #include "CGameMenu.h"
-#include <iostream>
 #include "CGameEngine.h"
+#include "CPlayState.h"
+#include <iostream>
+#include <typeinfo>
 
-CGameMenu::CGameMenu(CGameEngine *_engine)
-{
+CGameMenu::CGameMenu(CGameEngine *_engine) {
 	this->engine = _engine;
-	font.loadFromFile("fonts/CGA.ttf");
+	std::cout << &logObj << "\n";;
+	this->font.loadFromFile("fonts/CGA.ttf");
+	showLog(typeid(dynamic_cast<CGameMenu*>(engine->getState())).name());
 	std::string menuText[3] = { "1", "2", "3" };
 	std::cout << "Create: GAME MENU STATE\n";
 	for (int x = 0; x < 3; x++) {
@@ -15,31 +18,29 @@ CGameMenu::CGameMenu(CGameEngine *_engine)
 }
 
 
-CGameMenu::~CGameMenu()
-{
+CGameMenu::~CGameMenu() {
 	std::cout << "Destruct: GAME MENU STATE\n";
 }
 
-void CGameMenu::input()
-{
+void CGameMenu::input() {
 	sf::Event event;
 	while (engine->window.pollEvent(event))
 	{
-		if (event.type == sf::Event::Closed) {
+		if (event.type == sf::Event::Closed) 
 			engine->window.close();
-			engine->delState();
+		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N) {
+			engine->addState(new CPlayState(engine));
 		}
-			
 	}
 }
 
-void CGameMenu::update()
-{
-	std::cout << "UPDATE\n";
+void CGameMenu::update() {
+	//std::cout << "UPDATE\n";
 }
 
-void CGameMenu::draw()
-{
-	//engine->window.draw(mainMenu[0]);
-	std::cout << "DRAW\n";
+void CGameMenu::draw() {
+	engine->window.clear();
+	engine->window.draw(mainMenu[2]);
+	engine->window.draw(logObj);
+	engine->window.display();
 }

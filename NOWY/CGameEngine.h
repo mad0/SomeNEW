@@ -5,11 +5,9 @@
 
 class CGameState;
 
-class CGameEngine
-{
+class CGameEngine {
 private:
 	std::stack<CGameState*> gameStates;
-	bool isRuning;
 public:
 	sf::RenderWindow window;
 	CGameEngine();

@@ -5,8 +5,7 @@
 
 class CGameEngine;
 
-class CGameMenu : public CGameState
-{
+class CGameMenu : public CGameState {
 public:
 	CGameMenu(CGameEngine *);
 	~CGameMenu();
