@@ -146,6 +146,7 @@
     <ClInclude Include="CGameMenu.h" />
     <ClInclude Include="CGameState.h" />
     <ClInclude Include="CPlayState.h" />
+    <ClInclude Include="CResourceManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,8 +3,7 @@
 #include "CGameState.h"
 #include <typeinfo>
 
-CGameEngine::CGameEngine()
-{
+CGameEngine::CGameEngine(){
 	window.create(sf::VideoMode(1280, 720), "GameEngine v.001");
 }
 

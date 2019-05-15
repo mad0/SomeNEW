@@ -13,6 +13,7 @@ public:
 	void update();
 	void draw();
 private:
+	
 	sf::Text  mainMenu[3];
 	sf::Font font;
 };
