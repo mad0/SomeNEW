@@ -2,19 +2,18 @@
 #include <memory>
 #include <stack>
 #include "SFML/Graphics.hpp"
-
-class CGameState;
+#include "CStateMachine.h"
+#include "CResourceManager.h"
 
 class CGameEngine {
 private:
-	std::stack<CGameState*> gameStates;
+	bool isRunning;
+	CStateMachine stateMachine;
+	CResourceManager<sf::Font> fontManager;
 public:
 	sf::RenderWindow window;
 	CGameEngine();
 	~CGameEngine();
-	void addState(CGameState*);
-	CGameState* getState();
-	void delState();
 	void GameLoop();
 };
 

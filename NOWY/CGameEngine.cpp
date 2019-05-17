@@ -1,42 +1,34 @@
 #include "CGameEngine.h"
+#include "CGameMenu.h"
 #include <iostream>
 #include "CGameState.h"
 #include <typeinfo>
 
-CGameEngine::CGameEngine(){
+CGameEngine::CGameEngine() : isRunning(true){
+	std::cout << "Class: Engine is starting...\n";
 	window.create(sf::VideoMode(1280, 720), "GameEngine v.001");
+	window.setFramerateLimit(60);
+	stateMachine.addState(new CGameMenu(fontManager));
 }
 
 CGameEngine::~CGameEngine(){
-	std::cout << "NISZCZE ENGINE\n";
+	std::cout << "Class: Engine is ending...\n";
 	//usuwa ostatni wskaznik ze stosu
 	//std::cout << &(*getState()) << "\n";
+	stateMachine.delState(1);
 }
 
-void CGameEngine::addState(CGameState *_state){
-	gameStates.push(_state);
-}
-
-
-CGameState * CGameEngine::getState(){
-	return gameStates.top();
-}
-
-void CGameEngine::delState() {
-	if (!gameStates.empty()) {
-		delete gameStates.top();
-		gameStates.pop();
-		std::cout << "DEL: Usuwam stan ze stosu. Aktualna wielkosc stosu: "<<gameStates.size()<<"\n";
-	}
-}
 
 void CGameEngine::GameLoop(){
-	std::cout << "LOOP\n";
 		while (window.isOpen()) {
-			getState()->input();
-			getState()->update();
-			getState()->draw();
+			sf::Event event;
+			while (window.pollEvent(event)) {
+				if (event.type == sf::Event::Closed)
+					window.close();
+				stateMachine.input(event);
+			}	
+			stateMachine.update();
+			stateMachine.draw(window);
 		}
-		delState();
 }
 

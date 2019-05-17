@@ -137,8 +137,8 @@
   <ItemGroup>
     <ClCompile Include="CGameEngine.cpp" />
     <ClCompile Include="CGameMenu.cpp" />
-    <ClCompile Include="CGameState.cpp" />
     <ClCompile Include="CPlayState.cpp" />
+    <ClCompile Include="CStateMachine.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +147,7 @@
     <ClInclude Include="CGameState.h" />
     <ClInclude Include="CPlayState.h" />
     <ClInclude Include="CResourceManager.h" />
+    <ClInclude Include="CStateMachine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

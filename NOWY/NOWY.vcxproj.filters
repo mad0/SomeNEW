@@ -24,10 +24,10 @@
     <ClCompile Include="CGameMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CGameState.cpp">
+    <ClCompile Include="CPlayState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayState.cpp">
+    <ClCompile Include="CStateMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateMachine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

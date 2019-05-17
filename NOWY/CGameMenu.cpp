@@ -1,20 +1,21 @@
 #include "CGameMenu.h"
 #include "CGameEngine.h"
-#include "CPlayState.h"
+//#include "CPlayState.h"
 #include <iostream>
 #include <typeinfo>
-#include "CResourceManager.h"
 
-CGameMenu::CGameMenu(CGameEngine *_engine) {
-	CResourceManager<sf::Font> dupa;
-	dupa.addResource(1, "fonts/lucon.ttf");
-	this->engine = _engine;
-	std::cout << &logObj << "\n";;
+CGameMenu::CGameMenu(CResourceManager<sf::Font> &fontManager) {
+	std::cout << "Class: CGameMenu is starting...\n";
+	//CResourceManager<sf::Font> dupa;
+	//dupa = new CResourceManager<sf::Font>();
+	fontManager.addResource(1, "fonts/lucon.ttf");
+	//this->engine = _engine;
+	//std::cout << &logObj << "\n";;
 	//this->font.loadFromFile("fonts/CGA.ttf");
-	showLog(typeid(dynamic_cast<CGameMenu*>(engine->getState())).name());
-	std::string menuText[3] = { "1", "2", "3" };
-	std::cout << "Create: GAME MENU STATE\n";
-	mainMenu[0].setFont(dupa.getResource(1));
+	//showLog(typeid(dynamic_cast<CGameMenu*>(engine->getState())).name());
+	//std::string menuText[3] = { "1", "2", "3" };
+	//mainMenu[0].setFont(font);
+	mainMenu[0].setFont(fontManager.getResource(1));
 	mainMenu[0].setString("dupa");
 	//for (int x = 0; x < 3; x++) {
 	//	mainMenu[x].setFont(dupa.getResource(1));
@@ -25,28 +26,23 @@ CGameMenu::CGameMenu(CGameEngine *_engine) {
 
 
 CGameMenu::~CGameMenu() {
-	std::cout << "Destruct: GAME MENU STATE\n";
+	std::cout << "Class: CGameMenu is starting...\n";
 }
 
-void CGameMenu::input() {
-	sf::Event event;
-	while (engine->window.pollEvent(event))
-	{
-		if (event.type == sf::Event::Closed) 
-			engine->window.close();
-		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N) {
-			engine->addState(new CPlayState(engine));
+void CGameMenu::input(sf::Event &_event) {
+		if (_event.type == sf::Event::KeyPressed && _event.key.code == sf::Keyboard::N) {
+			//engine->addState(new CPlayState(engine));
+			std::cout << "DZIALA!\n";
 		}
-	}
+
 }
 
 void CGameMenu::update() {
 	//std::cout << "UPDATE\n";
 }
 
-void CGameMenu::draw() {
-	engine->window.clear();
-	engine->window.draw(mainMenu[0]);
-	engine->window.draw(logObj);
-	engine->window.display();
+void CGameMenu::draw(sf::RenderWindow &_window) {
+	_window.clear();
+	_window.draw(mainMenu[0]);
+	_window.display();
 }

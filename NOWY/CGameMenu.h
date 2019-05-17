@@ -3,18 +3,14 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-class CGameEngine;
-
 class CGameMenu : public CGameState {
 public:
-	CGameMenu(CGameEngine *);
+	CGameMenu(CResourceManager<sf::Font>&);
 	~CGameMenu();
-	void input();
+	void input(sf::Event&);
 	void update();
-	void draw();
+	void draw(sf::RenderWindow&);
 private:
-	
 	sf::Text  mainMenu[3];
-	sf::Font font;
 };
 

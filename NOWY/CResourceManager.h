@@ -18,13 +18,16 @@ private:
 template <typename Resource>
 inline void CResourceManager<Resource>::addResource(int _id, const std::string& _file) {
 	auto _temp = std::make_unique<Resource>();
-	_temp->loadFromFile(_file);
+	if (!_temp->loadFromFile(_file)) {
+		std::cout<<"ERROR\n";
+	}
 	mResources.insert(std::make_pair(_id, std::move(_temp)));
 };
 
 template<typename Resource>
-inline Resource & CResourceManager<Resource>::getResource(int _id)  {
+Resource & CResourceManager<Resource>::getResource(int _id)  {
 	auto find = mResources.find(_id);
-	std::cout << find->first;
+	//std::cout << typeid(find->second).name();
+	std::cout << "1 address: " << &(*find->second) << "\n";
 	return *find->second;
 };
