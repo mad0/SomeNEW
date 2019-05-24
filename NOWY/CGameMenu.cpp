@@ -1,6 +1,5 @@
 #include "CGameMenu.h"
 #include "CGameEngine.h"
-//#include "CPlayState.h"
 #include <iostream>
 #include <typeinfo>
 
@@ -9,6 +8,7 @@ CGameMenu::CGameMenu(CResourceManager<sf::Font> &fontManager) {
 	//CResourceManager<sf::Font> dupa;
 	//dupa = new CResourceManager<sf::Font>();
 	fontManager.addResource(1, "fonts/lucon.ttf");
+	fontManager.addResource(2, "fonts/CGA.ttf");
 	//this->engine = _engine;
 	//std::cout << &logObj << "\n";;
 	//this->font.loadFromFile("fonts/CGA.ttf");
@@ -17,6 +17,7 @@ CGameMenu::CGameMenu(CResourceManager<sf::Font> &fontManager) {
 	//mainMenu[0].setFont(font);
 	mainMenu[0].setFont(fontManager.getResource(1));
 	mainMenu[0].setString("dupa");
+	std::cout << "fontoooooooooo address:"<<&fontManager.getResource(1) << "\n";
 	//for (int x = 0; x < 3; x++) {
 	//	mainMenu[x].setFont(dupa.getResource(1));
 	//	std::cout << typeid(dupa.getResource(1).getInfo()).name();
@@ -26,12 +27,11 @@ CGameMenu::CGameMenu(CResourceManager<sf::Font> &fontManager) {
 
 
 CGameMenu::~CGameMenu() {
-	std::cout << "Class: CGameMenu is starting...\n";
+	std::cout << "Class: CGameMenu is ending...\n";
 }
 
 void CGameMenu::input(sf::Event &_event) {
 		if (_event.type == sf::Event::KeyPressed && _event.key.code == sf::Keyboard::N) {
-			//engine->addState(new CPlayState(engine));
 			std::cout << "DZIALA!\n";
 		}
 

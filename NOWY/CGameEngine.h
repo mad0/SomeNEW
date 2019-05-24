@@ -4,6 +4,7 @@
 #include "SFML/Graphics.hpp"
 #include "CStateMachine.h"
 #include "CResourceManager.h"
+#include "CPlayState.h"
 
 class CGameEngine {
 private:

@@ -12,7 +12,8 @@ CStateMachine::~CStateMachine() {
 	std::cout << "Class: stateMachine is ending...\n"; 
 }
 
-void CStateMachine::addState(CGameState * _state) {
+void CStateMachine::addState(std::shared_ptr<CGameState> _state) {
+	std::cout << "Scenes beffore add: " << mResources.size() << "\n";
 	sceneID++;
 	mResources.insert(std::make_pair(sceneID, _state));
 	std::cout << "Scenes number: "<<mResources.size() << "\n";
@@ -20,19 +21,22 @@ void CStateMachine::addState(CGameState * _state) {
 }
 
 void CStateMachine::delState(int _stateID) {
-	auto _temp = mResources.find(_stateID);
-	delete _temp->second;
-	mResources.erase(1);
-
+	//std::map <int, std::shared_ptr<CGameState>>::iterator _temp;
+	std::cout << "Deleter was runned.\n";
+	//auto _temp = mResources.find(_stateID);
+	mResources.erase(mResources.find(_stateID));
+	//std::cout << typeid(mResources.find(_stateID)->second).name() << "\n";
+	std::cout << "Scenes after delete: " << mResources.size() << "\n";
+	curentState = nullptr;
 }
 
 void CStateMachine::switchState(int _stateID) {
-	auto _find = mResources.find(_stateID);
-	curentState = _find->second;
+	//auto _find = mResources.find(_stateID);
+	//curentState = _find->second;
 }
 
 CGameState * CStateMachine::getState(int) {
-	return curentState;
+	return nullptr;
 }
 
 void CStateMachine::input(sf::Event &_event) {

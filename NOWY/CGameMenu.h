@@ -2,10 +2,12 @@
 #include "CGameState.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "CStateMachine.h"
 
 class CGameMenu : public CGameState {
 public:
 	CGameMenu(CResourceManager<sf::Font>&);
+
 	~CGameMenu();
 	void input(sf::Event&);
 	void update();
