@@ -1,8 +1,7 @@
+#include <iostream>
+#include <typeinfo>
 #include "CGameEngine.h"
 #include "CGameMenu.h"
-#include <iostream>
-#include "CGameState.h"
-#include <typeinfo>
 
 CGameEngine::CGameEngine() : isRunning(true){
 	std::cout << "Class: Engine is starting...\n";
@@ -13,29 +12,14 @@ CGameEngine::CGameEngine() : isRunning(true){
 
 CGameEngine::~CGameEngine(){
 	std::cout << "Class: Engine is ending...\n";
-	//usuwa ostatni wskaznik ze stosu
-	//std::cout << &(*getState()) << "\n";
 }
 
 
 void CGameEngine::GameLoop(){
 		while (window.isOpen()) {
-			//sf::Event event;
-			//while (window.pollEvent(event)) {
-			//	if (event.type == sf::Event::Closed)
-			//		window.close();
-				//if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-					//isRunning = false;
-				//	stateMachine.changeState(0);
-					//window.close();
-				//}
-				
 				stateMachine.input();
-			//}
 				stateMachine.update();
 				stateMachine.draw();
-				//if (!isRunning)
-				//	stateMachine.delState(1);
 		}
 }
 

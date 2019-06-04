@@ -1,7 +1,8 @@
-#include "CStateMachine.h"
 #include <iostream>
-#include "CGameState.h"
 #include <typeinfo>
+#include "CStateMachine.h"
+#include "CGameState.h"
+
 
 CStateMachine::CStateMachine() : mResources(), sceneID(), curentState() { 
 	std::cout << "Class: stateMachine is starting...\n"; 
