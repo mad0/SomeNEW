@@ -2,16 +2,17 @@
 #include "CGameState.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "CStateMachine.h"
+
+class CStateMachine;
 
 class CGameMenu : public CGameState {
 public:
-	CGameMenu(CResourceManager<sf::Font>&);
+	CGameMenu(CStateMachine*, sf::RenderWindow *, CResourceManager<sf::Font>*);
 
 	~CGameMenu();
-	void input(sf::Event&);
+	void input();
 	void update();
-	void draw(sf::RenderWindow&);
+	void draw();
 private:
 	sf::Text  mainMenu[3];
 };

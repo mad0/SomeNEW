@@ -2,14 +2,16 @@
 #include "CGameState.h"
 #include "CResourceManager.h"
 #include "SFML/Graphics.hpp"
+#include "CStateMachine.h"
+
 
 class CPlayState : public CGameState {
 public:
-	CPlayState(CResourceManager <sf::Font>&);
+	CPlayState(CStateMachine * stateMachine, CResourceManager <sf::Font>*, sf::RenderWindow*);
 	~CPlayState();
-	void input(sf::Event &);
+	void input();
 	void update();
-	void draw(sf::RenderWindow &);
+	void draw();
 private:
 	sf::Text text;
 };

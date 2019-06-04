@@ -10,15 +10,14 @@ public:
 	CStateMachine();
 	~CStateMachine();
 	void addState(std::shared_ptr<CGameState>);
-	void delState(int);
-	void switchState(int);
-	CGameState* getState(int);
-	void input(sf::Event&);
+	void changeState(int);
+	std::shared_ptr<CGameState> getState(int) const;
+	void input();
 	void update();
-	void draw(sf::RenderWindow&);
+	void draw();
 private:
 	std::shared_ptr<CGameState> curentState;
-	std::map <int,std::shared_ptr<CGameState>> mResources;
+	std::vector <std::shared_ptr<CGameState>> mResources;
 	int sceneID;
 };
 
