@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="CGameEngine.cpp" />
     <ClCompile Include="CGameMenu.cpp" />
+    <ClCompile Include="CInGameMenu.cpp" />
     <ClCompile Include="CPlayState.cpp" />
     <ClCompile Include="CStateMachine.cpp" />
     <ClCompile Include="main.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="CGameEngine.h" />
     <ClInclude Include="CGameMenu.h" />
     <ClInclude Include="CGameState.h" />
+    <ClInclude Include="CInGameMenu.h" />
     <ClInclude Include="CPlayState.h" />
     <ClInclude Include="CResourceManager.h" />
     <ClInclude Include="CStateMachine.h" />

@@ -3,7 +3,7 @@
 #include "CResourceManager.h"
 #include "SFML/Graphics.hpp"
 #include "CStateMachine.h"
-
+#include "CInGameMenu.h"
 
 class CPlayState : public CGameState {
 public:
@@ -13,6 +13,8 @@ public:
 	void update();
 	void draw();
 private:
+	CInGameMenu menuInGame;
 	sf::Text text;
+	bool game;
 };
 

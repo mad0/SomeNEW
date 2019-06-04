@@ -4,7 +4,7 @@
 #include "CGameState.h"
 
 
-CStateMachine::CStateMachine() : mResources(), sceneID(), curentState() { 
+CStateMachine::CStateMachine() : mResources(), curentState() { 
 	std::cout << "Class: stateMachine is starting...\n"; 
 }
 
@@ -15,7 +15,6 @@ CStateMachine::~CStateMachine() {
 
 void CStateMachine::addState(std::shared_ptr<CGameState> _state) {
 	std::cout << "Scenes beffore add: " << mResources.size() << "\n";
-	sceneID++;
 	mResources.emplace_back( _state);
 	std::cout << "Scenes number: "<<mResources.size() << "\n";
 	curentState = _state;

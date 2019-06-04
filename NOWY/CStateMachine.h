@@ -1,5 +1,4 @@
 #pragma once
-#include <map>
 #include <memory>
 #include "SFML/Graphics.hpp"
 
@@ -18,6 +17,5 @@ public:
 private:
 	std::shared_ptr<CGameState> curentState;
 	std::vector <std::shared_ptr<CGameState>> mResources;
-	int sceneID;
 };
 
