@@ -10,7 +10,8 @@ public:
 	~CStateMachine();
 	void addState(std::shared_ptr<CGameState>);
 	void changeState(int);
-	std::shared_ptr<CGameState> getState(int) const;
+	std::shared_ptr<CGameState> getState(int);
+	void delState();
 	void input();
 	void update();
 	void draw();

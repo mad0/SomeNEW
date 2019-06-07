@@ -6,11 +6,12 @@ class CInGameMenu  {
 private:
 	sf::RectangleShape bBig;
 	sf::RectangleShape bSmall;
-	sf::Text textMenu[3];
+	sf::Sprite textMenu[3];
+	sf::RenderWindow *window;
 public:
-	CInGameMenu(CResourceManager<sf::Font>&);
+	CInGameMenu(CResourceManager<sf::Texture>*, sf::RenderWindow*);
 	~CInGameMenu();
-	void showMenu(sf::RenderWindow *);
-	void update();
+	void showMenu();
+	bool inputMenu(sf::Event*, CStateMachine*);
 };
 

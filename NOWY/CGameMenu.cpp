@@ -1,20 +1,18 @@
 #include <iostream>
 #include <typeinfo>
 #include "CGameMenu.h"
-#include "CPlayState.h"
+//#include "CPlayState.h"
+#include "CGameEngine.h"
 
-CGameMenu::CGameMenu(CStateMachine * _stateMachine, sf::RenderWindow* _window, CResourceManager<sf::Font> *_fontManager) {
-	window = _window;
-	stateMachine = _stateMachine;
-	fontManager = _fontManager;
+CGameMenu::CGameMenu(CGameEngine *_engine) {
+	engine = _engine;
 	std::cout << "Class: CGameMenu is starting...\n";
-	std::string textMenu[2] = { "START GAME", "QUIT GAME" };
-	for (int x = 0; x < 2; x++) {
-		mainMenu[x].setFont(fontManager->getResource(1));
-		mainMenu[x].setString(textMenu[x]);
-		mainMenu[x].setPosition(sf::Vector2f(window->getSize().x/2-mainMenu[x].getGlobalBounds().width/2, window->getSize().y/2-mainMenu[x].getGlobalBounds().height-50+(x*100)));
-		std::cout << "fontoooooooooo address:" << &fontManager->getResource(1) << "\n";
-	}
+	mainMenu[0].setTexture(engine->getTexture(2));
+	mainMenu[0].setPosition(sf::Vector2f(engine->getWindow().getSize().x / 2 - mainMenu[0].getGlobalBounds().width / 2, engine->getWindow().getSize().y / 2 - mainMenu[0].getGlobalBounds().height - 50));
+	mainMenu[1].setTexture(engine->getTexture(6));
+	mainMenu[1].setPosition(sf::Vector2f(engine->getWindow().getSize().x / 2 - mainMenu[1].getGlobalBounds().width / 2, engine->getWindow().getSize().y / 2 - mainMenu[1].getGlobalBounds().height + 100));
+	mainMenu[2].setTexture(engine->getTexture(4));
+	mainMenu[2].setPosition(sf::Vector2f(engine->getWindow().getSize().x / 2 - mainMenu[2].getGlobalBounds().width / 2, engine->getWindow().getSize().y / 2 - mainMenu[2].getGlobalBounds().height +250));
 }
 
 
@@ -24,29 +22,36 @@ CGameMenu::~CGameMenu() {
 
 void CGameMenu::input() {
 	sf::Event event;
-	sf::Vector2f mouse (sf::Mouse::getPosition(*window));
-	while (window->pollEvent(event)) {
+	sf::Vector2f mouse (sf::Mouse::getPosition(engine->getWindow()));
+	while (engine->getWindow().pollEvent(event)) {
 		if (event.type == sf::Event::Closed)
-			window->close();
+			engine->getWindow().close();
 		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 			std::cout << "ESC in MENU pressed....\n";
-			window->close();
+			engine->getWindow().close();
 		}
 		if ((mainMenu[0].getGlobalBounds().contains(mouse)) && (event.type == sf::Event::MouseButtonReleased) && (event.key.code == sf::Mouse::Left)) {
-			stateMachine->addState(std::make_shared<CPlayState>(stateMachine, fontManager, window));
+			//engine->addState(std::make_shared<CPlayState>());
 		}
-		if ((mainMenu[1].getGlobalBounds().contains(mouse)) && (event.type == sf::Event::MouseButtonReleased) && (event.key.code == sf::Mouse::Left)) {
-			window->close();
+		if ((mainMenu[2].getGlobalBounds().contains(mouse)) && (event.type == sf::Event::MouseButtonReleased) && (event.key.code == sf::Mouse::Left)) {
+			engine->getWindow().close();
 		}
 		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::S) {
 		}
 	}
-	for (auto& m : mainMenu) {
-		if (m.getGlobalBounds().contains(mouse))
-			m.setFillColor(sf::Color::Red);
-		else
-			m.setFillColor(sf::Color::White);
-	}
+
+		if (mainMenu[0].getGlobalBounds().contains(mouse))
+			mainMenu[0].setTexture(engine->getTexture(3));
+		else mainMenu[0].setTexture(engine->getTexture(2));
+
+		if (mainMenu[1].getGlobalBounds().contains(mouse))
+			mainMenu[1].setTexture(engine->getTexture(7));
+		else mainMenu[1].setTexture(engine->getTexture(6));
+
+		if (mainMenu[2].getGlobalBounds().contains(mouse))
+			mainMenu[2].setTexture(engine->getTexture(5));
+		else mainMenu[2].setTexture(engine->getTexture(4));
+
 	
 }
 
@@ -54,8 +59,8 @@ void CGameMenu::update() {
 }
 
 void CGameMenu::draw() {
-	window->clear();
+	engine->getWindow().clear(sf::Color(159, 159, 159 , 255));
 	for (auto& t: mainMenu)
-		window->draw(t);
-	window->display();
+		engine->getWindow().draw(t);
+	engine->getWindow().display();
 }

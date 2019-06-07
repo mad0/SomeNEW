@@ -1,14 +1,16 @@
 #include "CPlayState.h"
 #include <iostream>
 
-CPlayState::CPlayState(CStateMachine * _stateMachine, CResourceManager <sf::Font>* font, sf::RenderWindow *_window) : game(true), menuInGame(*font) {
+CPlayState::CPlayState(CStateMachine * _stateMachine, 
+						CResourceManager <sf::Texture>* _textureResources, 
+						sf::RenderWindow *_window) 
+		: game(true), menuInGame(_textureResources, _window) {
 	window = _window;
-	fontManager = font;
+	textureResources = _textureResources;
+	window = _window;
 	stateMachine = _stateMachine;
 	//showLog(typeid(dynamic_cast<CPlayState*>(engine->getState())).name());
-	std::cout << "fontoooooooooooo address:"<<&fontManager->getResource(2) << "\n";
-	text.setFont(fontManager->getResource(2));
-	text.setString("IM IN GAME NOW!!!");
+	//std::cout << "fontoooooooooooo address:"<<&fontManager.getResource(2) << "\n";
 	std::cout << "Class: CPlayState is starting...\n";
 }
 
@@ -24,25 +26,28 @@ void CPlayState::input() {
 					window->close();
 		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 			std::cout << "ESC in PLAY pressed....\n";
-			if (game) game = false;
+			if (game) {
+				game = false;
+			}
 			 else game = true;
 		}
+		if (!game)
+			if (menuInGame.inputMenu(&event, stateMachine))
+				stateMachine->changeState(0);
 	}
 }
 
 void CPlayState::update(){
 	int z = 0;
 	if (game) {
-		std::cout << z << "\n";
+		//std::cout << z << "\n";
 	}
 }
 
 void CPlayState::draw(){
-	
-	window->clear();
-	window->draw(text);
+	window->clear(sf::Color(191, 206, 114, 255));
 	if (!game)
-		menuInGame.showMenu(window);
+		menuInGame.showMenu();
 	window->display();
 }
 

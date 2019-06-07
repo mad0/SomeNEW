@@ -14,20 +14,29 @@ CStateMachine::~CStateMachine() {
 }
 
 void CStateMachine::addState(std::shared_ptr<CGameState> _state) {
+	//std::cout << typeid(_state).name() << "\n";
 	std::cout << "Scenes beffore add: " << mResources.size() << "\n";
-	mResources.emplace_back( _state);
-	std::cout << "Scenes number: "<<mResources.size() << "\n";
+	mResources.emplace_back(_state);
+	std::cout << "Scenes after added: " << mResources.size() << "\n";
 	curentState = _state;
 }
 
-void CStateMachine::changeState(int _stateID) {
-	curentState = mResources[_stateID - 1];
+void CStateMachine::changeState(int stateID) {
+		curentState = mResources[stateID];
+	//	delState();
 }
 
-
-std::shared_ptr<CGameState> CStateMachine::getState(int) const {
-	return nullptr;
+std::shared_ptr<CGameState> CStateMachine::getState(int sInt) {
+	return mResources[sInt];
 }
+
+void CStateMachine::delState(){
+	std::cout << "Resources size before delete:" << mResources.size() << "\n";
+	mResources.pop_back();
+	std::cout <<"Resources size after delete:"<< mResources.size() << "\n";
+	curentState = mResources.back();
+}
+
 
 void CStateMachine::input() {
 	curentState->input();

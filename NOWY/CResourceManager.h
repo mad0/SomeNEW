@@ -26,6 +26,6 @@ template<typename Resource>
 Resource & CResourceManager<Resource>::getResource(int _id)  {
 	auto find = mResources.find(_id);
 	//std::cout << typeid(find->second).name();
-	std::cout << "1 address: " << &(*find->second) << "\n";
+	//std::cout << "1 address: " << &(*find->second) << "\n";
 	return *find->second;
 };

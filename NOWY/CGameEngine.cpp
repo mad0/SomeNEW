@@ -3,13 +3,22 @@
 #include "CGameEngine.h"
 #include "CGameMenu.h"
 
-CGameEngine::CGameEngine() : isRunning(true){
+CGameEngine::CGameEngine() : isRunning(true), stateMachine(), fontManager(), textureResources() {
 	std::cout << "Class: Engine is starting...\n";
-	window.create(sf::VideoMode(1280, 720), "GameEngine v.001", sf::Style::Default);
+	window.create(sf::VideoMode(1920, 1080), "GameEngine v.001", sf::Style::Default);
 	window.setFramerateLimit(60);
 	fontManager.addResource(1, "fonts/lucon.ttf");
 	fontManager.addResource(2, "fonts/CGA.ttf");
-	stateMachine.addState(std::make_shared<CGameMenu>(&stateMachine, &window, &fontManager ));
+	textureResources.addResource(1, "images/bSmall.png");
+	textureResources.addResource(2, "images/start1.png");
+	textureResources.addResource(3, "images/start2.png");
+	textureResources.addResource(4, "images/exit1.png");
+	textureResources.addResource(5, "images/exit2.png");
+	textureResources.addResource(6, "images/options1.png");
+	textureResources.addResource(7, "images/options2.png");
+	textureResources.addResource(8, "images/back1.png");
+	textureResources.addResource(9, "images/exittomenu.png");
+
 }
 
 CGameEngine::~CGameEngine(){
@@ -23,5 +32,25 @@ void CGameEngine::GameLoop() {
 		stateMachine.update();
 		stateMachine.draw();
 	}
+}
+
+sf::Texture & CGameEngine::getTexture(int tInt) {
+	return textureResources.getResource(tInt);
+}
+
+sf::Font & CGameEngine::getFont(int fInt) {
+	return fontManager.getResource(fInt);
+}
+
+std::shared_ptr<CGameState> CGameEngine::getState(int sInt) {
+	return stateMachine.getState(sInt);
+}
+
+void CGameEngine::addState(std::shared_ptr<CGameState>_state) {
+	stateMachine.addState(_state);
+}
+
+sf::RenderWindow & CGameEngine::getWindow() {
+	return window;
 }
 

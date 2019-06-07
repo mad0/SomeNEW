@@ -7,14 +7,16 @@
 
 class CPlayState : public CGameState {
 public:
-	CPlayState(CStateMachine * stateMachine, CResourceManager <sf::Font>*, sf::RenderWindow*);
+	CPlayState(CStateMachine*, CResourceManager <sf::Texture>*, sf::RenderWindow*);
 	~CPlayState();
 	void input();
 	void update();
 	void draw();
 private:
 	CInGameMenu menuInGame;
-	sf::Text text;
+	sf::Text textEsc[3];
 	bool game;
+	sf::RectangleShape bBig;
+	sf::RectangleShape bSmall;
 };
 
