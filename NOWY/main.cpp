@@ -5,7 +5,9 @@
 
 int main() {
 	CGameEngine engine;
-	engine.addState(std::make_shared<CGameMenu>(&engine));
+	engine.addState(STATES::MENU, std::make_shared<CGameMenu>(&engine));
+	engine.addState(STATES::MENU, std::make_shared<CGameMenu>(&engine));
+
 	engine.GameLoop();
 return 0;
 }

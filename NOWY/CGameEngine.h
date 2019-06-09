@@ -15,8 +15,9 @@ public:
 	void GameLoop();
 	sf::Texture& getTexture(int);
 	sf::Font& getFont(int);
-	std::shared_ptr<CGameState> getState(int);
-	void addState(std::shared_ptr<CGameState>);
+	std::shared_ptr<CGameState> getState(STATES);
+	void changeState(STATES);
+	void addState(STATES, std::shared_ptr<CGameState>);
 	sf::RenderWindow& getWindow();
 };
 

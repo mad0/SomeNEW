@@ -1,13 +1,13 @@
 #pragma once
 #include "CGameState.h"
-#include "CResourceManager.h"
 #include "SFML/Graphics.hpp"
-#include "CStateMachine.h"
 #include "CInGameMenu.h"
+
+class CGameEngine;
 
 class CPlayState : public CGameState {
 public:
-	CPlayState(CStateMachine*, CResourceManager <sf::Texture>*, sf::RenderWindow*);
+	CPlayState(CGameEngine*);
 	~CPlayState();
 	void input();
 	void update();

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <typeinfo>
 #include "CGameMenu.h"
-//#include "CPlayState.h"
+#include "CPlayState.h"
 #include "CGameEngine.h"
 
 CGameMenu::CGameMenu(CGameEngine *_engine) {
@@ -31,7 +31,7 @@ void CGameMenu::input() {
 			engine->getWindow().close();
 		}
 		if ((mainMenu[0].getGlobalBounds().contains(mouse)) && (event.type == sf::Event::MouseButtonReleased) && (event.key.code == sf::Mouse::Left)) {
-			//engine->addState(std::make_shared<CPlayState>());
+			engine->addState(STATES::PLAY, std::make_shared<CPlayState>(engine));
 		}
 		if ((mainMenu[2].getGlobalBounds().contains(mouse)) && (event.type == sf::Event::MouseButtonReleased) && (event.key.code == sf::Mouse::Left)) {
 			engine->getWindow().close();

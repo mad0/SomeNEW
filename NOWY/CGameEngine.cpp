@@ -42,12 +42,16 @@ sf::Font & CGameEngine::getFont(int fInt) {
 	return fontManager.getResource(fInt);
 }
 
-std::shared_ptr<CGameState> CGameEngine::getState(int sInt) {
-	return stateMachine.getState(sInt);
+std::shared_ptr<CGameState> CGameEngine::getState(STATES sType) {
+	return stateMachine.getState(sType);
 }
 
-void CGameEngine::addState(std::shared_ptr<CGameState>_state) {
-	stateMachine.addState(_state);
+void CGameEngine::changeState(STATES sType) {
+	stateMachine.changeState(sType);
+}
+
+void CGameEngine::addState(STATES sType, std::shared_ptr<CGameState>_state) {
+	stateMachine.addState(sType, _state);
 }
 
 sf::RenderWindow & CGameEngine::getWindow() {
