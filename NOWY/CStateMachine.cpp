@@ -15,21 +15,9 @@ CStateMachine::~CStateMachine() {
 
 void CStateMachine::addState(STATES stateType, std::shared_ptr<CGameState> _state) {
 	std::cout << "Scenes beffore add: " << mResources.size() << "\n";
-		//std::map<STATES, std::shared_ptr<CGameState>>::iterator itr;
-		//itr = mResources.find(stateType);
-		//if (itr == mResources.end()) {
-			mResources.emplace(std::make_pair(stateType, _state));
-			curentState = _state;
-	//}
-		//else {
-		//	curentState = _state;
-		//}
-		
-		//if (itr != mResources.end()) {
-		//	curentState = _state;
-			std::cout << "Scenes after added: " << mResources.size() << "\n";
-		//}
-	//}
+	mResources.emplace(std::make_pair(stateType, _state));
+	curentState = _state;
+	std::cout << "Scenes after added: " << mResources.size() << "\n";
 }
 
 void CStateMachine::changeState(STATES sType) {
@@ -55,7 +43,6 @@ void CStateMachine::delState(STATES sType) {
 		mResources.erase(itr);
 		std::cout << "Resources size after delete:" << mResources.size() << "\n";
 	}
-	
 }
 
 

@@ -22,14 +22,9 @@ CInGameMenu::~CInGameMenu(){
 void CInGameMenu::showMenu() {
 	engine->getWindow().draw(bBig);
 	engine->getWindow().draw(bSmall);
-	for (auto& m : textMenu) {
-		if (m.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(engine->getWindow())))) {
-			m.setColor(sf::Color::Red);
-		}
-		else {
-			m.setColor(sf::Color::White);
-		}
-	}
+		if (textMenu[0].getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(engine->getWindow()))))
+			textMenu[0].setColor(sf::Color::Red);
+		else textMenu[0].setColor(sf::Color::White);
 	for (auto& t: textMenu)
 		engine->getWindow().draw(t);
 }
