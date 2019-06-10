@@ -16,8 +16,9 @@ public:
 	sf::Texture& getTexture(int);
 	sf::Font& getFont(int);
 	std::shared_ptr<CGameState> getState(STATES);
-	void changeState(STATES);
+	void delState(STATES);
 	void addState(STATES, std::shared_ptr<CGameState>);
+
 	sf::RenderWindow& getWindow();
 };
 

@@ -18,7 +18,6 @@ CGameEngine::CGameEngine() : isRunning(true), stateMachine(), fontManager(), tex
 	textureResources.addResource(7, "images/options2.png");
 	textureResources.addResource(8, "images/back1.png");
 	textureResources.addResource(9, "images/exittomenu.png");
-
 }
 
 CGameEngine::~CGameEngine(){
@@ -46,8 +45,8 @@ std::shared_ptr<CGameState> CGameEngine::getState(STATES sType) {
 	return stateMachine.getState(sType);
 }
 
-void CGameEngine::changeState(STATES sType) {
-	stateMachine.changeState(sType);
+void CGameEngine::delState(STATES sType) {
+	stateMachine.delState(sType);
 }
 
 void CGameEngine::addState(STATES sType, std::shared_ptr<CGameState>_state) {

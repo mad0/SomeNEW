@@ -14,7 +14,7 @@ public:
 	void addState(STATES, std::shared_ptr<CGameState>);
 	void changeState(STATES);
 	std::shared_ptr<CGameState> getState(STATES);
-	void delState();
+	void delState(STATES);
 	void input();
 	void update();
 	void draw();

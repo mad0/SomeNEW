@@ -14,27 +14,48 @@ CStateMachine::~CStateMachine() {
 }
 
 void CStateMachine::addState(STATES stateType, std::shared_ptr<CGameState> _state) {
-	//std::cout << typeid(_state).name() << "\n";
 	std::cout << "Scenes beffore add: " << mResources.size() << "\n";
-	mResources.insert(std::make_pair(stateType, _state));
-	std::cout << "Scenes after added: " << mResources.size() << "\n";
-	curentState = _state;
+		//std::map<STATES, std::shared_ptr<CGameState>>::iterator itr;
+		//itr = mResources.find(stateType);
+		//if (itr == mResources.end()) {
+			mResources.emplace(std::make_pair(stateType, _state));
+			curentState = _state;
+	//}
+		//else {
+		//	curentState = _state;
+		//}
+		
+		//if (itr != mResources.end()) {
+		//	curentState = _state;
+			std::cout << "Scenes after added: " << mResources.size() << "\n";
+		//}
+	//}
 }
 
 void CStateMachine::changeState(STATES sType) {
-	for (auto itr = mResources.find(sType); itr != mResources.end(); itr++)
-		curentState= itr->second;
+
+	std::map<STATES, std::shared_ptr<CGameState>>::iterator itr;
+	itr = mResources.find(sType);
+	if (itr != mResources.end()){
+			std::cout << itr->first << "\n";
+			curentState = itr->second;
+		}
 }
 
 std::shared_ptr<CGameState> CStateMachine::getState(STATES sType) {
 	return nullptr;
 }
 
-void CStateMachine::delState(){
+void CStateMachine::delState(STATES sType) {
+	std::map<STATES, std::shared_ptr<CGameState>>::iterator itr;
 	std::cout << "Resources size before delete:" << mResources.size() << "\n";
-	//mResources.pop_back();
-	std::cout <<"Resources size after delete:"<< mResources.size() << "\n";
-	//curentState = mResources.back();
+	itr = mResources.find(sType);
+	if (itr != mResources.end()) {
+		curentState = mResources.at(STATES::MENU);
+		mResources.erase(itr);
+		std::cout << "Resources size after delete:" << mResources.size() << "\n";
+	}
+	
 }
 
 

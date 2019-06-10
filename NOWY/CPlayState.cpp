@@ -21,15 +21,15 @@ void CPlayState::input() {
 					engine->getWindow().close();
 		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 			std::cout << "ESC in PLAY pressed....\n";
-			if (game) {
-				game = false;
-			}
+			if (game) game = false;
 			 else game = true;
-		}
-		if (!game)
-			if (menuInGame.inputMenu(event))
-				engine->changeState(STATES::MENU);
+		}	
 	}
+	if (!game)
+		if (menuInGame.inputMenu(event)) {
+			std::cout << "OK\n";
+			engine->delState(STATES::PLAY);
+		}
 }
 
 void CPlayState::update(){
