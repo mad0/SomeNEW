@@ -25,17 +25,27 @@ void CPlayState::input() {
 			 else game = true;
 		}	
 	}
-	if (!game)
-		if (menuInGame.inputMenu(event)) {
-			std::cout << "OK\n";
+	if (!game) {
+		switch (menuInGame.inputMenu(event)) {
+		case mOPTIONS::BACK:
+			game = true;
+			break;
+		case mOPTIONS::OPTIONS:
+			std::cout << "OPTIONS in MENU\n";
+			break;
+		case mOPTIONS::EXIT:
 			engine->delState(STATES::PLAY);
+			break;
+		case mOPTIONS::STOP:
+			game = false;
 		}
+	}
 }
 
-void CPlayState::update(){
+void CPlayState::update() {
 	int z = 0;
 	if (game) {
-		//std::cout << z << "\n";
+		std::cout << z << "\n";
 	}
 }
 

@@ -17,7 +17,9 @@ CGameEngine::CGameEngine() : isRunning(true), stateMachine(), fontManager(), tex
 	textureResources.addResource(6, "images/options1.png");
 	textureResources.addResource(7, "images/options2.png");
 	textureResources.addResource(8, "images/back1.png");
-	textureResources.addResource(9, "images/exittomenu.png");
+	textureResources.addResource(9, "images/back2.png");
+	textureResources.addResource(10, "images/exittomenu.png");
+	textureResources.addResource(11, "images/exittomenu2.png");
 }
 
 CGameEngine::~CGameEngine(){

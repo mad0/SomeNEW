@@ -1,6 +1,8 @@
 #pragma once
 #include "CGameState.h"
 
+enum class mOPTIONS {BACK, OPTIONS, EXIT, STOP};
+
 class CGameEngine;
 
 class CInGameMenu  {
@@ -13,6 +15,6 @@ public:
 	CInGameMenu(CGameEngine*);
 	~CInGameMenu();
 	void showMenu();
-	bool inputMenu(sf::Event&);
+	mOPTIONS inputMenu(sf::Event&);
 };
 
