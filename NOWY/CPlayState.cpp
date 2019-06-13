@@ -4,6 +4,8 @@
 
 CPlayState::CPlayState(CGameEngine *_engine) : game(true), menuInGame(_engine) {
 	engine = _engine;
+	bg.setTexture(engine->getTexture(12));
+	bg.setScale(3,3);
 	//showLog(typeid(dynamic_cast<CPlayState*>(engine->getState())).name());
 	//std::cout << "fontoooooooooooo address:"<<&fontManager.getResource(2) << "\n";
 	std::cout << "Class: CPlayState is starting...\n";
@@ -51,6 +53,7 @@ void CPlayState::update() {
 
 void CPlayState::draw(){
 	engine->getWindow().clear(sf::Color(191, 206, 114, 255));
+	engine->getWindow().draw(bg);
 	if (!game)
 		menuInGame.showMenu();
 	engine->getWindow().display();

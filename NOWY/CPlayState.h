@@ -13,6 +13,7 @@ public:
 	void update();
 	void draw();
 private:
+	sf::Sprite bg;
 	CInGameMenu menuInGame;
 	sf::Text textEsc[3];
 	bool game;
