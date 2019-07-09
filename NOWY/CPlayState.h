@@ -2,6 +2,8 @@
 #include "CGameState.h"
 #include "SFML/Graphics.hpp"
 #include "CInGameMenu.h"
+#include "CMap.h"
+#include "CPlayer.h"
 
 class CGameEngine;
 
@@ -13,7 +15,8 @@ public:
 	void update();
 	void draw();
 private:
-	sf::Sprite bg;
+	std::unique_ptr<CMap> map;
+	std::unique_ptr<CPlayer> player;
 	CInGameMenu menuInGame;
 	sf::Text textEsc[3];
 	bool game;

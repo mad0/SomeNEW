@@ -5,12 +5,11 @@
 
 CGameEngine::CGameEngine() : isRunning(true), stateMachine(), fontManager(), textureResources() {
 	std::cout << "Class: Engine is starting...\n";
-	window.create(sf::VideoMode(1920, 1080), "GameEngine v.001", sf::Style::Fullscreen);
-	window.setFramerateLimit(60);
+	window.create(sf::VideoMode(1920, 1080), "GameEngine v.001", sf::Style::Default);
+	window.setFramerateLimit(30);
 	fontManager.addResource(1, "fonts/lucon.ttf");
 	fontManager.addResource(2, "fonts/CGA.ttf");
-	textureResources.addResource(1, "images/bSmall.png");
-	textureResources.addResource(2, "images/start1.png");
+	textureResources.addResource(99, "images/start1.png");
 	textureResources.addResource(3, "images/start2.png");
 	textureResources.addResource(4, "images/exit1.png");
 	textureResources.addResource(5, "images/exit2.png");
@@ -20,7 +19,8 @@ CGameEngine::CGameEngine() : isRunning(true), stateMachine(), fontManager(), tex
 	textureResources.addResource(9, "images/back2.png");
 	textureResources.addResource(10, "images/exittomenu.png");
 	textureResources.addResource(11, "images/exittomenu2.png");
-	textureResources.addResource(12, "images/bg.png");
+	textureResources.addResource(22, "images/boy.png");
+	textureResources.addResource(15, "images/box1.png");
 }
 
 CGameEngine::~CGameEngine(){
@@ -54,6 +54,10 @@ void CGameEngine::delState(STATES sType) {
 
 void CGameEngine::addState(STATES sType, std::shared_ptr<CGameState>_state) {
 	stateMachine.addState(sType, _state);
+}
+
+void CGameEngine::addTexture(int id, const std::string& file) {
+	textureResources.addResource(id, file);
 }
 
 sf::RenderWindow & CGameEngine::getWindow() {

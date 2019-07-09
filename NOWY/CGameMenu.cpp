@@ -7,7 +7,7 @@
 CGameMenu::CGameMenu(CGameEngine *_engine) {
 	engine = _engine;
 	std::cout << "Class: CGameMenu is starting...\n";
-	mainMenu[0].setTexture(engine->getTexture(2));
+	mainMenu[0].setTexture(engine->getTexture(99));
 	mainMenu[0].setPosition(sf::Vector2f(engine->getWindow().getSize().x / 2 - mainMenu[0].getGlobalBounds().width / 2, engine->getWindow().getSize().y / 2 - mainMenu[0].getGlobalBounds().height - 50));
 	mainMenu[1].setTexture(engine->getTexture(6));
 	mainMenu[1].setPosition(sf::Vector2f(engine->getWindow().getSize().x / 2 - mainMenu[1].getGlobalBounds().width / 2, engine->getWindow().getSize().y / 2 - mainMenu[1].getGlobalBounds().height + 100));
@@ -42,7 +42,7 @@ void CGameMenu::input() {
 
 		if (mainMenu[0].getGlobalBounds().contains(mouse))
 			mainMenu[0].setTexture(engine->getTexture(3));
-		else mainMenu[0].setTexture(engine->getTexture(2));
+		else mainMenu[0].setTexture(engine->getTexture(99));
 
 		if (mainMenu[1].getGlobalBounds().contains(mouse))
 			mainMenu[1].setTexture(engine->getTexture(7));

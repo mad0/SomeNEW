@@ -18,6 +18,7 @@ public:
 	std::shared_ptr<CGameState> getState(STATES);
 	void delState(STATES);
 	void addState(STATES, std::shared_ptr<CGameState>);
+	void addTexture(int, const std::string&);
 
 	sf::RenderWindow& getWindow();
 };

@@ -4,11 +4,12 @@
 
 CPlayState::CPlayState(CGameEngine *_engine) : game(true), menuInGame(_engine) {
 	engine = _engine;
-	bg.setTexture(engine->getTexture(12));
-	bg.setScale(3,3);
+	map = std::make_unique<CMap>(engine);
+	player = std::make_unique<CPlayer>(engine);
 	//showLog(typeid(dynamic_cast<CPlayState*>(engine->getState())).name());
 	//std::cout << "fontoooooooooooo address:"<<&fontManager.getResource(2) << "\n";
 	std::cout << "Class: CPlayState is starting...\n";
+	map->loadScene("kitchen");
 }
 
 
@@ -26,7 +27,16 @@ void CPlayState::input() {
 			if (game) game = false;
 			 else game = true;
 		}	
+		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::O) {
+			
+		}
+		
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		//map.checkCollision
+	}
+	//if (!map.checkCollision(player->getPLayer()))
+	//	player->playerInput(event);
 	if (!game) {
 		switch (menuInGame.inputMenu(event)) {
 		case mOPTIONS::BACK:
@@ -53,7 +63,8 @@ void CPlayState::update() {
 
 void CPlayState::draw(){
 	engine->getWindow().clear(sf::Color(191, 206, 114, 255));
-	engine->getWindow().draw(bg);
+	map->drawScene();
+	player->playerDraw();
 	if (!game)
 		menuInGame.showMenu();
 	engine->getWindow().display();

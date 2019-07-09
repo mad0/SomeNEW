@@ -146,6 +146,8 @@
     <ClCompile Include="CGameEngine.cpp" />
     <ClCompile Include="CGameMenu.cpp" />
     <ClCompile Include="CInGameMenu.cpp" />
+    <ClCompile Include="CMap.cpp" />
+    <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CPlayState.cpp" />
     <ClCompile Include="CStateMachine.cpp" />
     <ClCompile Include="main.cpp" />
@@ -155,6 +157,8 @@
     <ClInclude Include="CGameMenu.h" />
     <ClInclude Include="CGameState.h" />
     <ClInclude Include="CInGameMenu.h" />
+    <ClInclude Include="CMap.h" />
+    <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPlayState.h" />
     <ClInclude Include="CResourceManager.h" />
     <ClInclude Include="CStateMachine.h" />
