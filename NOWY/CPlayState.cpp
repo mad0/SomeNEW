@@ -9,7 +9,7 @@ CPlayState::CPlayState(CGameEngine *_engine) : game(true), menuInGame(_engine) {
 	//showLog(typeid(dynamic_cast<CPlayState*>(engine->getState())).name());
 	//std::cout << "fontoooooooooooo address:"<<&fontManager.getResource(2) << "\n";
 	std::cout << "Class: CPlayState is starting...\n";
-	map->loadScene("kitchen");
+	map->loadScene("room");
 }
 
 

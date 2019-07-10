@@ -5,7 +5,7 @@
 
 CGameEngine::CGameEngine() : isRunning(true), stateMachine(), fontManager(), textureResources() {
 	std::cout << "Class: Engine is starting...\n";
-	window.create(sf::VideoMode(1920, 1080), "GameEngine v.001", sf::Style::Default);
+	window.create(sf::VideoMode(1920, 1080), "GameEngine v.001", sf::Style::Fullscreen);
 	window.setFramerateLimit(30);
 	fontManager.addResource(1, "fonts/lucon.ttf");
 	fontManager.addResource(2, "fonts/CGA.ttf");
